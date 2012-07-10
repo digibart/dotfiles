@@ -1,5 +1,9 @@
 #!/bin/bash
 cd "$(dirname "$0")"
+
+#download git-completion.bash
+curl -o .git-completion.bash https://raw.github.com/git/git/master/contrib/completion/git-completion.bash
+
 git pull
 function doIt() {
 	rsync --exclude ".git/" --exclude ".DS_Store" --exclude "bootstrap.sh" --exclude "README.md" -av . ~
