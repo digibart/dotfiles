@@ -1,6 +1,8 @@
 [alias]
-	# View the SHA, description, and history graph of the latest 20 commits
-	l = log --pretty=oneline -n 20 --graph
+	# View the description short SHA, description and author of the latest 20 commits
+	l = "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative -n 20"
+	#same, but show all commits
+	g = "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
 	# View the current working tree status using the short format
 	s = status -s
 	# Diff
@@ -21,6 +23,8 @@
 	credit = "!f() { git commit --amend --author \"$1 <$2>\" -C HEAD; }; f"
 	# Undo a `git push`
 	undopush = push -f origin HEAD^:master
+	#unstage a file
+	unstage = reset HEAD
 
 [apply]
 	# Detect whitespace errors when applying a patch
@@ -32,19 +36,22 @@
 	attributesfile = ~/.gitattributes
 	# Treat spaces before tabs, lines that are indented with 8 or more spaces, and all kinds of trailing whitespace as an error
 	whitespace = space-before-tab,indent-with-non-tab,trailing-space
+	autocrlf = input
+	pager = cat
+	quotepath = false
 
 [color]
-	# Use colors in Git commands that are capable of colored output when outputting to the terminal
 	ui = auto
-[color "branch"]
-	current = yellow reverse
-	local = yellow
-	remote = green
+	diff = auto
 [color "diff"]
-	meta = yellow bold
-	frag = magenta bold
-	old = red bold
-	new = green bold
+	meta = yellow
+	frag = cyan
+	old = red
+	new = green
+[color "branch"]
+	current = magenta
+	local = green
+	remote = blue
 [color "status"]
 	added = yellow
 	changed = green
@@ -52,11 +59,6 @@
 [merge]
 	# Include summaries of merged commits in newly created merge commit messages
 	log = true
-
-# Use `origin` as the default remote on the `master` branch in all cases
-[branch "master"]
-	remote = origin
-	merge = refs/heads/master
 
 # URL shorthands
 [url "git@github.com:"]
