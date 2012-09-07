@@ -14,7 +14,7 @@
 	# Commit all changes
 	ca = !git add -A && git commit -av
 	# Switch to a branch, creating it if necessary
-	go = checkout -B
+	go = checkout
 	#show current branch
         cb = !git branch | grep ^* | cut -d' ' -f2
 	# Show verbose output about tags, branches or remotes
