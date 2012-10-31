@@ -57,6 +57,10 @@ alias flush="dscacheutil -flushcache"
 alias sniff="sudo ngrep -d 'en1' -t '^(GET|POST) ' 'tcp and port 80'"
 alias httpdump="sudo tcpdump -i en1 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET \/.*\""
 
+#setup tunnels with sshuttle
+alias tunnel='sshuttle -D --pidfile=/tmp/sshuttle.pid --dns 0/0 -r'
+alias stoptunnel='[[ -f /tmp/sshuttle.pid ]] && kill `cat /tmp/sshuttle.pid`'
+
 # Fake curl ajax requests
 alias xcurl="curl -H 'X-Requested-With: XMLHttpRequest'"
 
